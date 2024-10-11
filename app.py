@@ -37,7 +37,7 @@ def addItem():
         giftBought = input("Has the gift been bought? (yes/no): ").strip().lower()
 
         if giftBought not in ["yes", "no"]:
-            raise ValueError("Error: Please enter yes or no for the status of the bought gift.")
+            raise ValueError("Error: Please enter yes or no for the status of the gift.")
 
         # Add a new entry
         giftTracker[newEntry] = {

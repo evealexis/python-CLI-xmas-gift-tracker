@@ -1,8 +1,8 @@
 {
     "Bob": {
         "gift": "Watch",
-        "price": 200,
-        "bought": "No"
+        "price": "250",
+        "bought": "no"
     },
     "Sarah": {
         "gift": "Scarf",
