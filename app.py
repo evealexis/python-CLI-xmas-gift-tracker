@@ -1,8 +1,8 @@
-# Christmas Gift Budget tracker
+# Christmas Gift Tracker
 import json
 
-# GiftBudget dictionary
-giftBudget = {
+# GiftTracker dictionary
+giftTracker = {
     "Bob": {
         "gift": "Watch",
         "price": 200,
@@ -17,73 +17,73 @@ giftBudget = {
 
 # Check if the JSON exists or create a new one
 try:
-    with open("giftBudget.json", "r") as file:
-        giftBudget = json.load(file)
+    with open("giftTracker.json", "r") as file:
+        giftTracker = json.load(file)
 except (FileNotFoundError, json.JSONDecodeError):
-    with open("giftBudget.json", "w") as file:
-        json.dump(giftBudget, file, indent=4)
+    with open("giftTracker.json", "w") as file:
+        json.dump(giftTracker, file, indent=4)
 
 def addItem():
     # Read the JSON file
-    with open("giftBudget.json", "r") as file:
-        giftBudget = json.load(file)
+    with open("giftTracker.json", "r") as file:
+        giftTracker = json.load(file)
 
     # Check if gift entry has been added
     try:
         # Grab the entry for the key and each value for user input
         newEntry = input("Enter a name: ").strip()
         giftName = input("Enter a gift: ").strip()
-        giftPrice = input("Enter a price: ").strip()
-        giftBought = input("Has the gift been bought? (yes/no): ").strip()
+        giftPrice = float(input("Enter a price: ").strip())
+        giftBought = input("Has the gift been bought? (yes/no): ").strip().lower()
 
         if giftBought not in ["yes", "no"]:
             raise ValueError("Error: Please enter yes or no for the status of the bought gift.")
 
         # Add a new entry
-        giftBudget[newEntry] = {
+        giftTracker[newEntry] = {
             "gift": giftName,
             "price": giftPrice,
             "bought": giftBought
         }
         
-        # Write the updated budget back to the JSON file
-        with open("giftBudget.json", "w") as file:
-            json.dump(giftBudget, file, indent=4)
+        # Write the updated Tracker back to the JSON file
+        with open("giftTracker.json", "w") as file:
+            json.dump(giftTracker, file, indent=4)
 
         # Show updated dictionary
-        print("Updated Gift Budget Tracker:\n")
+        print("Updated Gift Tracker:\n")
         showAll()
     
     except ValueError as e:
         print(e)
 
     finally:
-        print("Your Gift Budget Tracker has now been updated!")
+        print("Your Gift Tracker has now been updated!")
 
 def showAll():
-    with open("giftBudget.json", "r") as file:
-        giftBudget = json.load(file)
+    with open("giftTracker.json", "r") as file:
+        giftTracker = json.load(file)
 
-    # Loop through giftBudget
-    for name, details in giftBudget.items():
+    # Loop through giftTracker
+    for name, details in giftTracker.items():
         print(f"{name}: Gift: {details['gift']}, Price: {details['price']}, Bought: {details['bought']}")
 
 def deleteItem():
     # Read JSON
-    with open("giftBudget.json", "r") as file:
-        giftBudget = json.load(file)
+    with open("giftTracker.json", "r") as file:
+        giftTracker = json.load(file)
     
     try:
         # Delete an item
         delEntry = input("Enter the name you want to delete: ").strip()
-        if delEntry in giftBudget:
-            giftBudget.pop(delEntry)
+        if delEntry in giftTracker:
+            giftTracker.pop(delEntry)
 
-            with open("giftBudget.json", "w") as file:
-                json.dump(giftBudget, file, indent=4)
+            with open("giftTracker.json", "w") as file:
+                json.dump(giftTracker, file, indent=4)
             print(f"{delEntry} has successfully been deleted.")
         else:
-            print(f"{delEntry} not found in the budget tracker.")
+            print(f"{delEntry} not found in the Gift tracker.")
     
     except Exception as e:
         print(f"Error: {e}")
@@ -91,14 +91,14 @@ def deleteItem():
 # Update an item
 def updateItem():
     # Read the JSON
-    with open("giftBudget.json", "r") as file:
-        giftBudget = json.load(file)
+    with open("giftTracker.json", "r") as file:
+        giftTracker = json.load(file)
 
     try:
         updateName = input("Enter the name you want to update: ").strip()
         
-        # Check if the name exists in the gift budget
-        if updateName in giftBudget:
+        # Check if the name exists in the gift tracker
+        if updateName in giftTracker:
             # Get new details for the entry
             giftName = input("Enter the new gift name: ").strip()
             giftPrice = input("Enter the new price: ").strip()
@@ -108,7 +108,7 @@ def updateItem():
                 raise ValueError("Error: Please enter yes or no for the status of the bought gift.")
 
             # Update the existing entry
-            giftBudget[updateName] = {
+            giftTracker[updateName] = {
                 "gift": giftName,
                 "price": giftPrice,
                 "bought": giftBought
@@ -120,8 +120,8 @@ def updateItem():
             print(f"Error: {updateName} has not been found.")
 
         # Write back to the JSON file
-        with open("giftBudget.json", "w") as file:
-            json.dump(giftBudget, file, indent=4)
+        with open("gifteTacker.json", "w") as file:
+            json.dump(giftTracker, file, indent=4)
     
     except ValueError as e:
         print(f"Error: {e}")

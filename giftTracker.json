@@ -4,9 +4,9 @@
         "price": 200,
         "bought": "No"
     },
-    "Amy": {
-        "gift": "Perfume",
-        "price": 30,
-        "bought": "Yes"
+    "Jim": {
+        "gift": "Scarf",
+        "price": 5.0,
+        "bought": "yes"
     }
 }
