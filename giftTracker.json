@@ -1,0 +1,12 @@
+{
+    "Bob": {
+        "gift": "Watch",
+        "price": 200,
+        "bought": "No"
+    },
+    "Jim": {
+        "gift": "Scarf",
+        "price": 5.0,
+        "bought": "yes"
+    }
+}
